@@ -1,29 +1,24 @@
+require 'sc2ranks/team'
+require 'sc2ranks/portrait'
+
 class Sc2ranks
-  class Character
-    attr_reader :region
-    attr_reader :name
-    attr_reader :bnet_id
-    attr_reader :id
-    attr_reader :updated_at
-    attr_reader :achievement_points
-    attr_reader :character_code
-    attr_reader :portrait
-    attr_reader :teams
+  class Character < Struct.new(:name, :bnet_url, :bnet_id, :id, :region, :updated_at, :achievement_points, :character_code, :portrait, :teams)
+    def initialize(url, data)
+      self.bnet_url = url
 
-    def initialize(http)
-      @region = http['region']
-      @name = http['name']
-      @bnet_id = http['bnet_id']
-      @id = http['id']
-      @updated_at = http['updated_at']
-      @achievement_points = http['achievement_points']
-      @character_code = http['character_code']
+      (members - ['bnet_url']).each do |member|
+        case member
+        when 'portrait'
+          self.portrait = Portrait.new(data[member])
+        when 'teams'
+          self.teams = []
 
-      @portrait = Portrait.new(http['portrait'])
-
-      @teams = []
-      http['teams'].each do |data|
-        @teams << Team.new(data)
+          data['teams'].each do |team|
+            self.teams << Team.new(team)
+          end
+        else
+          self[member] = data[member]
+        end
       end
     end
 
@@ -33,61 +28,13 @@ class Sc2ranks
     # array of teams (or an empty array if their are none).
     def team(bracket, is_random = false)
       if bracket == 1 or is_random
-        @teams.detect do |team|
+        self.teams.detect do |team|
           team.bracket == bracket and team.is_random == is_random
         end
       else
-        @teams.select do |team|
+        self.teams.select do |team|
           team.bracket == bracket and team.is_random == is_random
         end
-      end
-    end
-
-    class Team
-      attr_reader :bracket
-      attr_reader :is_random
-      attr_reader :fav_race
-      attr_reader :updated_at
-      attr_reader :league
-      attr_reader :division
-      attr_reader :division_rank
-      attr_reader :world_rank
-      attr_reader :region_rank
-      attr_reader :wins
-      attr_reader :losses
-      attr_reader :points
-      attr_reader :ratio
-
-      def initialize(http)
-        @bracket = http['bracket']
-        @is_random = http['is_random']
-        @fav_race = http['fav_race']
-        @updated_at = http['updated_at']
-        @league = http['league']
-        @division = http['division']
-        @division_rank = http['division_rank']
-        @world_rank = http['world_rank']
-        @region_rank = http['region_rank']
-        @wins = http['wins']
-        @losses = http['losses']
-        @points = http['points']
-        @ratio = http['ratio']
-      end
-
-      def is_random?
-        @is_random
-      end
-    end
-
-    class Portrait
-      attr_reader :icon_id
-      attr_reader :column
-      attr_reader :row
-
-      def initialize(http)
-        @icon_id = http['icon_id']
-        @column = http['column']
-        @row = http['row']
       end
     end
   end

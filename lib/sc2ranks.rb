@@ -14,16 +14,15 @@ class Sc2ranks
   end
 
   def character(url)
-    parse_bnet_url url
+    region, char = parse_bnet_url url
 
-    data = self.class.get("/api/base/teams/#{@region}/#{@character}.xml")
-    Character.new data['hash']
+    data = self.class.get("/api/base/teams/#{region}/#{char}.xml")
+
+    Character.new url, data['hash']
   end
 
   def parse_bnet_url(url)
     Sc2ranks::RE =~ url
-
-    @region = $1
-    @character = "#{$3}!#{$2}"
+    return $1, "#{$3}!#{$2}"
   end
 end
