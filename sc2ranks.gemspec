@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sc2ranks}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christopher Giroir"]
   s.date = %q{2011-01-09}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{This gem allows you to access data from http://sc2ranks.com}
   s.email = %q{kelsin@valefor.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/sc2ranks.rb",
     "lib/sc2ranks/character.rb",
+    "sc2ranks.gemspec",
     "test/helper.rb",
     "test/test_sc2ranks.rb"
   ]
