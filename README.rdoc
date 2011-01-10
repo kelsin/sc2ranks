@@ -38,7 +38,7 @@ This is what I've decided to use on my site in order for a user to point us to
 their character. Sc2ranks isn't able to get character code information for new
 users anymore so they have advised API users to not use character code. The
 other way to look up a user is by battle.net id but I feel it's much easier for
-a user to just copy their url instead of having them locate the id in there.
+a user to just copy their url instead of having them locate the id.
 
 == Portrait Data
 
@@ -60,20 +60,20 @@ object
 Bracket can be 1 through 4. The is_random parameter defaults to false so you
 don't need to use it. Team data does not include team members yet.
 
-If you call this with 1 you get the 1v1 team immediately (or nil if it doesn't
-exist.)
+If you call method with a 1 or is_random set to true then you get a single team
+or nil if no team exists.
 
-If you call it with any other parameters you get an array of teams (or [] if
-there are none.)
+If you call this with 2, 3 or 4 and is_random set to false, you get an array of
+teams (or [] if there are none.)
 
     # Get 1v1 team
-    team = character.team(1)
+    team = character.team(1) # single team object or nil
 
     # Get 2v2 random team
-    team = character.team(2, true)
+    team = character.team(2, true) # single team object or nil
 
     # Get 4v4 teams
-    team = character.team(4)
+    teams = character.team(4) # array of teams or []
 
 Once you get the team you can use the following methods to reach the data.
 

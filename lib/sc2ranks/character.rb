@@ -27,10 +27,14 @@ class Sc2ranks
       end
     end
 
+    # Look up a team via bracket number and is_random setting. If you are trying
+    # to find the user's 1v1 team or a random team this will return the Team
+    # object or nil. If you are looking for 2's, 3's or 4's this will return an
+    # array of teams (or an empty array if their are none).
     def team(bracket, is_random = false)
-      if bracket == 1
+      if bracket == 1 or is_random
         @teams.detect do |team|
-          team.bracket == 1
+          team.bracket == bracket and team.is_random == is_random
         end
       else
         @teams.select do |team|
