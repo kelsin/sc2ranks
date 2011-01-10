@@ -6,8 +6,6 @@ class Sc2ranks
       end
     end
 
-    def is_random?
-      self.is_random
-    end
+    alias :is_random? :is_random
   end
 end

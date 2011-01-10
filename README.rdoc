@@ -24,6 +24,7 @@ This will return an object with the following methods
 
 +name+:: Character name
 +bnet_id+:: Battle.net ID
++bnet_url+:: Passed in Battle.net profile url
 +region+:: Battle.net region
 +id+:: Sc2ranks id
 +updated_at+:: When the sc2ranks data was last updated
@@ -78,7 +79,7 @@ teams (or [] if there are none.)
 Once you get the team you can use the following methods to reach the data.
 
 +bracket+:: The number of the bracket (1, 2, 3 or 4)
-+is_random+:: Whether this is a random team (true or false)
++is_random+:: Whether this is a random team (true or false), also aliased as <tt>is_random?</tt>
 +fav_race+:: Race most played for this team (zerg, terran or protoss)
 +updated_at+:: Time that sc2ranks.com last updated this team's data
 +league+:: League that this team is currently in (bronze, silver, gold, platinum or diamond)
