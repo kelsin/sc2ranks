@@ -22,23 +22,23 @@ of the Sc2ranks object with a battle.net profile url:
 
 This will return an object with the following methods
 
-* name:: Character name
-* bnet_id:: Battle.net ID
-* region:: Battle.net region
-* id:: Sc2ranks id
-* updated_at:: When the sc2ranks data was last updated
-* achievement_points:: Current achievement point total
-* character_code:: Character Code (sc2ranks won't have access to these anymore)
-* portrait:: Portrait object with portrait data
-* teams:: An array of Team objects with team data
++name+:: Character name
++bnet_id+:: Battle.net ID
++region+:: Battle.net region
++id+:: Sc2ranks id
++updated_at+:: When the sc2ranks data was last updated
++achievement_points+:: Current achievement point total
++character_code+:: Character Code (sc2ranks won't have access to these anymore)
++portrait+:: Portrait object with portrait data
++teams+:: An array of Team objects with team data
 
 == Portrait Data
 
 The portrait object contains the following fields
 
-* icon_id:: Which icon graphic to use
-* column:: Which column in the graphic to use
-* row:: Which row in the graphic to use
++icon_id+:: Which icon graphic to use
++column+:: Which column in the graphic to use
++row+:: Which row in the graphic to use
 
 Please see http://sc2ranks.com/api for more information on using this data.
 
@@ -47,24 +47,41 @@ Please see http://sc2ranks.com/api for more information on using this data.
 To get to a certain team quick you can use the team method on your Character
 object
 
-    character.team(bracket, is_random)
+    team = character.team(bracket, is_random)
 
 Bracket can be 1 through 4. The is_random parameter defaults to false so you
 don't need to use it. Team data does not include team members yet.
 
-If you call this with 1 you get the 1v1 team immediately (or nil if it doesn't exist)
+If you call this with 1 you get the 1v1 team immediately (or nil if it doesn't
+exist.)
 
 If you call it with any other parameters you get an array of teams (or [] if
-there are none)
+there are none.)
 
     # Get 1v1 team
-    character.team(1)
+    team = character.team(1)
 
     # Get 2v2 random team
-    character.team(2, true)
+    team = character.team(2, true)
 
     # Get 4v4 teams
-    character.team(4)
+    team = character.team(4)
+
+Once you get the team you can use the following methods to reach the data.
+
++bracket+:: The number of the bracket (1, 2, 3 or 4)
++is_random+:: Whether this is a random team (true or false)
++fav_race+:: Race most played for this team (zerg, terran or protoss)
++updated_at+:: Time that sc2ranks.com last updated this team's data
++league+:: League that this team is currently in (bronze, silver, gold, platinum or diamond)
++division+:: Division that this team is in
++division_rank+:: Current rank in that division
++world_rank+:: Current world rank
++region_rank+:: Current region rank
++wins+:: Number of wins
++losses+:: Number of losses
++points+:: Current ladder point total
++ratio+:: Ratio of wins to loses
 
 == Copyright
 
