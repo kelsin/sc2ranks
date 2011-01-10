@@ -12,7 +12,7 @@ that you are requesting from.
 
     sc2ranks = Sc2ranks.new('sc2.kelsin.net')
 
-== Character data (/w Teams)
+== Loading a Character
 
 Right now the only api call implemented is the "Character with base team info"
 call since it handles everything I need currently. Just use the character method
@@ -31,6 +31,14 @@ This will return an object with the following methods
 +character_code+:: Character Code (sc2ranks won't have access to these anymore)
 +portrait+:: Portrait object with portrait data
 +teams+:: An array of Team objects with team data
+
+=== Battle.net Profile URL
+
+This is what I've decided to use on my site in order for a user to point us to
+their character. Sc2ranks isn't able to get character code information for new
+users anymore so they have advised API users to not use character code. The
+other way to look up a user is by battle.net id but I feel it's much easier for
+a user to just copy their url instead of having them locate the id in there.
 
 == Portrait Data
 
