@@ -4,15 +4,67 @@ A gem used to access the api of http://sc2ranks.com
 
 Documentation about the api can be found at http://sc2ranks.com/api
 
-== Contributing to sc2ranks
+== Starting Out
 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+First you need an instance of the Sc2ranks class. Just pass a app key to the new
+method. According to the api page at sc2ranks.com an appkey should be the domain
+that you are requesting from.
+
+    sc2ranks = Sc2ranks.new('sc2.kelsin.net')
+
+== Character data (/w Teams)
+
+Right now the only api call implemented is the "Character with base team info"
+call since it handles everything I need currently. Just use the character method
+of the Sc2ranks object with a battle.net profile url:
+
+    character = sc2ranks.character('http://us.battle.net/sc2/en/profile/280904/1/Kelsin/')
+
+This will return an object with the following methods
+
+* name:: Character name
+* bnet_id:: Battle.net ID
+* region:: Battle.net region
+* id:: Sc2ranks id
+* updated_at:: When the sc2ranks data was last updated
+* achievement_points:: Current achievement point total
+* character_code:: Character Code (sc2ranks won't have access to these anymore)
+* portrait:: Portrait object with portrait data
+* teams:: An array of Team objects with team data
+
+== Portrait Data
+
+The portrait object contains the following fields
+
+* icon_id:: Which icon graphic to use
+* column:: Which column in the graphic to use
+* row:: Which row in the graphic to use
+
+Please see http://sc2ranks.com/api for more information on using this data.
+
+== Team Data
+
+To get to a certain team quick you can use the team method on your Character
+object
+
+    character.team(bracket, is_random)
+
+Bracket can be 1 through 4. The is_random parameter defaults to false so you
+don't need to use it. Team data does not include team members yet.
+
+If you call this with 1 you get the 1v1 team immediately (or nil if it doesn't exist)
+
+If you call it with any other parameters you get an array of teams (or [] if
+there are none)
+
+    # Get 1v1 team
+    character.team(1)
+
+    # Get 2v2 random team
+    character.team(2, true)
+
+    # Get 4v4 teams
+    character.team(4)
 
 == Copyright
 
