@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/Kelsin/sc2ranks"
   gem.license = "MIT"
   gem.summary = %Q{A gem to access the api of sc2ranks.com}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.description = %Q{This gem allows you to access data from http://sc2ranks.com}
   gem.email = "kelsin@valefor.com"
   gem.authors = ["Christopher Giroir"]
   gem.add_runtime_dependency 'httparty', '> 0.6.1'
