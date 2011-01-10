@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sc2ranks}
-  s.version = "0.1.5"
+  s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christopher Giroir"]
-  s.date = %q{2011-01-09}
+  s.date = %q{2011-01-10}
   s.description = %q{This gem allows you to access data from http://sc2ranks.com}
   s.email = %q{kelsin@valefor.com}
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".rspec",
     ".rvmrc",
     "Gemfile",
     "Gemfile.lock",
@@ -25,11 +26,16 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "features/sc2ranks.feature",
+    "features/step_definitions/sc2ranks_steps.rb",
+    "features/support/env.rb",
     "lib/sc2ranks.rb",
     "lib/sc2ranks/character.rb",
+    "lib/sc2ranks/portrait.rb",
+    "lib/sc2ranks/team.rb",
     "sc2ranks.gemspec",
-    "test/helper.rb",
-    "test/test_sc2ranks.rb"
+    "spec/sc2ranks_spec.rb",
+    "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/Kelsin/sc2ranks}
   s.licenses = ["MIT"]
@@ -37,8 +43,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{A gem to access the api of sc2ranks.com}
   s.test_files = [
-    "test/helper.rb",
-    "test/test_sc2ranks.rb"
+    "spec/sc2ranks_spec.rb",
+    "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -47,20 +53,23 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<httparty>, [">= 0"])
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_development_dependency(%q<cucumber>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<httparty>, [">= 0"])
-      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_dependency(%q<cucumber>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
     s.add_dependency(%q<httparty>, [">= 0"])
-    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+    s.add_dependency(%q<cucumber>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
