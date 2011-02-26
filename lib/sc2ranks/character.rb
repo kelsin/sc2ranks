@@ -5,8 +5,10 @@ class Sc2ranks
   class Character < Struct.new(:name, :bnet_url, :bnet_id, :id, :region, :updated_at, :achievement_points, :character_code, :portrait, :teams)
     def initialize(url, data)
       self.bnet_url = url
+      
+      new_members = Sc2ranks.members_to_string(members)
 
-      (members - ['bnet_url']).each do |member|
+      (new_members - ['bnet_url']).each do |member|
         case member
         when 'portrait'
           self.portrait = Portrait.new(data[member])
