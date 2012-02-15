@@ -25,4 +25,8 @@ class Sc2ranks
     Sc2ranks::RE =~ url
     return $1, "#{$3}!#{$2}"
   end
+
+  def self.members_to_string(members)
+    members.collect { |m| m.to_s } if RUBY_VERSION >= '1.9'
+  end
 end
