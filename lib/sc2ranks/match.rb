@@ -11,9 +11,9 @@ class Sc2ranks
     end
     
     def self.all(bnet_url)
-      uri = URI.parse(bnet_url)
+      uri = URI.parse(bnet_url + 'matches')
       response = Net::HTTP.get_response(uri)
-      puts response.body
+      puts uri
     end
   end
 end
