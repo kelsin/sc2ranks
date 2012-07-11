@@ -32,6 +32,7 @@ This will return an object with the following methods
 +character_code+:: Character Code (sc2ranks won't have access to these anymore)
 +portrait+:: Portrait object with portrait data
 +teams+:: An array of Team objects with team data
++matches+:: An array of Match objects with match data
 
 === Battle.net Profile URL
 
@@ -91,6 +92,15 @@ Once you get the team you can use the following methods to reach the data.
 +losses+:: Number of losses
 +points+:: Current ladder point total
 +ratio+:: Ratio of wins to loses
+
+== Match Data
+
+Match data is scraped straight from http://battle.net via the supplied +bnet_url+. I have not yet build an accessor method, but each +Match+ has the following attributes:
+
++map+:: The map name, e.g. "Magma Core"
++type+:: Match type, e.g. "2v2"
++outcome+:: Either +:win+ or +:loss+
++date+:: Date of match as a +Date+ (does not include a time)
 
 == Copyright
 
