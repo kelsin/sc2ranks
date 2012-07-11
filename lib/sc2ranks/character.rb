@@ -2,7 +2,7 @@ require 'sc2ranks/team'
 require 'sc2ranks/portrait'
 
 class Sc2ranks
-  class Character < Struct.new(:name, :bnet_url, :bnet_id, :id, :region, :updated_at, :achievement_points, :character_code, :portrait, :teams)
+  class Character < Struct.new(:name, :bnet_url, :bnet_id, :id, :region, :updated_at, :achievement_points, :character_code, :portrait, :teams, :matches)
     def initialize(url, data)
       self.bnet_url = url
       
@@ -17,6 +17,12 @@ class Sc2ranks
 
           data['teams'].each do |team|
             self.teams << Team.new(team)
+          end
+        when 'matches'
+          self.matches = Match.all(bnet_url)
+
+          data['matches'].each do |match|
+            self.matches << Match.new(match)
           end
         else
           self[member] = data[member]
