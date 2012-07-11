@@ -21,10 +21,6 @@ class Sc2ranks
           end
         when 'matches'
           self.matches = Match.all(bnet_url)
-
-          data['matches'].each do |match|
-            self.matches << Match.new(match)
-          end
         else
           self[member] = data[member]
         end
