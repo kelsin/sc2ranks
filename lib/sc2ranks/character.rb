@@ -1,4 +1,5 @@
 require 'sc2ranks/team'
+require 'sc2ranks/match'
 require 'sc2ranks/portrait'
 
 class Sc2ranks
