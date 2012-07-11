@@ -30,7 +30,7 @@ class Sc2ranks
             end
           end
         end
-        match # return the match
+        self.new(match) # return the match
       end
     end
   end
