@@ -2,7 +2,7 @@ class Sc2ranks
   class Match < Struct.new(:map, :type, :outcome, :date)
     def initialize(data)
       Sc2ranks.members_to_string(members).each do |member|
-        self[member] = data[member]
+        self[member] = data[member.to_sym]
       end
     end
 
