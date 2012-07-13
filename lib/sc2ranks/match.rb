@@ -24,10 +24,8 @@ class Sc2ranks
           [:date, 'td[5]/text()', :to_date]
         ].each do |name, xpath, methods|
           match[name] = row.at_xpath(xpath).to_s.strip
-          unless methods.nil?
-            Array(methods).each do |method|
-              match[name] = match[name].send(method)
-            end
+          Array(methods).each do |method|
+            match[name] = match[name].send(method)
           end
         end
         self.new(match) # return the match
