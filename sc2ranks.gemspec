@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Christopher Giroir"]
+  s.authors = ["Christopher Giroir", "Fred Kelly"]
   s.date = %q{2011-01-10}
   s.description = %q{This gem allows you to access data from http://sc2ranks.com}
   s.email = %q{kelsin@valefor.com}
